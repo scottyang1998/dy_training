@@ -74,7 +74,7 @@ let info =
   },
   {
     deptname:"技术工程中心",
-    imcode: "66708",
+    imcode: "608",
     imnick:"陈小春",
     pos_name:"Web前端"
   },
@@ -86,6 +86,4 @@ let info =
   },
 ];
 
-export default{
-  info
-}
+export default info

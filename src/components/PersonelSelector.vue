@@ -1,4 +1,3 @@
-import arr from '../data/data.js'
 <template>
   <el-select
     v-model="value"
@@ -9,17 +8,22 @@ import arr from '../data/data.js'
     placeholder="请输入关键词"
     :remote-method="remoteMethod"
     :loading="loading"
-    style="width: 600px;">
+    style="width: 500px;">
     <el-option
       v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value">
+      :key="item.imcode"
+      :label="`${item.imnick}${item.id}`"
+      :imcode="item.imcode"
+      :deptname="item.deptname"
+      :imnick="item.imnick"
+      :pos_name="item.pos_name"
+      :value=item.imcode>
     </el-option>
   </el-select>
 </template>
 
 <script>
+  import arr from '../data/data.js'
   export default {
     data() {
       return {
@@ -27,12 +31,21 @@ import arr from '../data/data.js'
         value: [],
         list: [],
         loading: false,
-        states: 'arr'
+        states: arr
       }
     },
     mounted() {
+      console.log('xx1', this.states);
       this.list = this.states.map(item => {
-        return { value: `value:${item.value}`, label: `label:${item.value}` };  
+        return { 
+          deptname: `${item.deptname}`, 
+          label: `label:${item.imcode}`, 
+          imcode: `${item.imcode}`, 
+          imnick: `imnick:${item.imnick}`, 
+          pos_name: `${item.pos_name}`, 
+          key: `key:${item.imnick}`,
+          value: `value:${item.imcode}`
+          };  
       });
     },
     methods: {
@@ -42,8 +55,8 @@ import arr from '../data/data.js'
           setTimeout(() => {
             this.loading = false;
             this.options = this.list.filter(item => {
-              return item.label.toLowerCase()
-                .indexOf(query.toLowerCase()) > -1; //模糊搜索
+              return item.imnick.toLowerCase()
+                .indexOf(query.toLowerCase()) > -1; 
             });
           }, 200);
         } else {

@@ -2,18 +2,21 @@
   <div class="personel">
     <h1>This is an selector</h1>
     <Personelselector></Personelselector>
+    <Showdata></Showdata>
   </div>
 </template>
 
 <script>
 import Personelselector from '../components/PersonelSelector.vue'
+import Showdata from '../components/showdata'
 
 export default {
   data() {
     return {}
   },
   components: {
-    Personelselector
+    Personelselector,
+    Showdata
   }
 }
 </script>
