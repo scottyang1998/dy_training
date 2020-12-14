@@ -24,21 +24,21 @@
         states: arr
       }
     },
-    computed: {
-      handledata: {
-        get() {
-          return this.value
-        },
-        set(newval) {
-          console.log("aaa", newval);
-          this.value = newval.map((val) => {
-            return val.split('-')[0]
-          })
-        }
-      }
-    },
+    // computed: {
+    //   handledata: {
+    //     get() {
+    //       return this.value
+    //     },
+    //     set(newval) {
+    //       console.log("aaa", newval);
+    //       this.value = newval.map((val) => {
+    //         return val.split('-')[0]
+    //       })
+    //     }
+    //   }
+    // },
     mounted() {
-      console.log('xx1', this.states);
+      //console.log('xx1', this.states);
       this.list = this.states.map(item => {
         return {
           deptname: `${item.deptname}`,
@@ -60,6 +60,13 @@
             this.options = this.list.filter(item => {
               return (item.label + item.imnick).toLowerCase()
                 .indexOf(query.toLowerCase()) > -1;
+
+              // var reg1 = /(\d{1,3})+(?:\.\d+)?/   //匹配query中的第一串数字
+              // var reg2 = /[\u4e00-\u9fa5]{2,}/    //匹配query中的第一串汉字
+              // var m = query.match(reg1);
+              // var n = query.match(reg2);
+              // return (new RegExp(reg2).test(item.imnick) && new RegExp(reg1).test(item.imcode))
+
             });
           }, 200);
         } else {
