@@ -1,8 +1,8 @@
 <template>
   <div class="personel">
-    <h1>This is an selector</h1>
+    <h1></h1>
     <Personelselector></Personelselector>
-    <Showdata></Showdata>
+    <!-- <Showdata></Showdata> -->
   </div>
 </template>
 

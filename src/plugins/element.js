@@ -1,4 +1,4 @@
-import { Checkbox, Input, Radio, Select, Option } from 'element-ui'
+import { Checkbox, Input, Radio, Select, Option, Icon } from 'element-ui'
 const element = {
   install: function (Vue) {
     Vue.use(Select)
@@ -6,6 +6,7 @@ const element = {
     Vue.use(Checkbox)
     Vue.use(Radio)
     Vue.use(Option)
+    Vue.use(Icon)
   }
 }
 export default element
