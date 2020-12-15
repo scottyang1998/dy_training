@@ -7,18 +7,16 @@
 </template>
 
 <script>
-import Personelselector from '../components/PersonelSelector.vue'
-import Showdata from '../components/showdata'
+  import Personelselector from '../components/PersonelSelector.vue'
 
-export default {
-  data() {
-    return {}
-  },
-  components: {
-    Personelselector,
-    Showdata
+  export default {
+    data() {
+      return {}
+    },
+    components: {
+      Personelselector,
+    }
   }
-}
 </script>
 
 <style></style>
