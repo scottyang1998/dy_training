@@ -45,7 +45,7 @@ let screen = function(background, foreground, width, height, transform) {
   return top
 }
 
-import StackBlur from 'stackblur-canvas'
+import * as StackBlur from 'stackblur-canvas'
 import ColorMatrix from './color-matrix.js'
 
 export default class Ctx {

@@ -1,4 +1,4 @@
-<!--  -->
+<!-- 
 <template>
   <div id="image-editor" :style="imageEditorSty">
     <a class=" hide" id="download-link"></a>
@@ -801,4 +801,4 @@
     bottom: 0;
     transform: translateX(50%) translateY(50%);
   }
-</style>
+</style> -->
