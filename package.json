@@ -9,8 +9,11 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "cropperjs": "^1.5.9",
     "element-ui": "^2.14.1",
+    "stackblur-canvas": "^2.4.0",
     "vue": "^2.6.11",
+    "vue-color": "^2.8.0",
     "vue-router": "^3.2.0"
   },
   "devDependencies": {
@@ -27,6 +30,9 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^6.2.2",
+    "less": "^3.13.0",
+    "less-loader": "^7.1.0",
+    "vue-cropper": "^0.5.5",
     "vue-template-compiler": "^2.6.11"
   }
 }

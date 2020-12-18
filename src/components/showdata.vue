@@ -1,4 +1,4 @@
-<!-- <template>
+<!-- <!-- <template>
   <el-select v-model="value" filterable placeholder="请选择">
     <el-option
       v-for="item in options"
@@ -35,7 +35,7 @@
   }
 </script> -->
 
-的，此时需要为el-option添加key属性，且其值需具有唯一性，比如此例中的item.value。
+<!-- 的，此时需要为el-option添加key属性，且其值需具有唯一性，比如此例中的item.value。
 
 <template>
   <el-select
@@ -105,4 +105,4 @@
       }
     }
   }
-</script>
+</script> --> -->
