@@ -1,4 +1,4 @@
-import { Checkbox, Input, Radio, Select, Option, Icon, Menu, MenuItem, MenuItemGroup, Submenu, Container, Header, Main, Aside, Row, Button} from 'element-ui'
+import { Checkbox, Input, Radio, Select, Option, Icon, Menu, MenuItem, MenuItemGroup, Submenu, Container, Header, Main, Aside, Row, Button, Col, Tooltip, Tabs, TabPane, InputNumber, link} from 'element-ui'
 const element = {
   install: function (Vue) {
     Vue.use(Select)
@@ -17,6 +17,12 @@ const element = {
     Vue.use(Aside)
     Vue.use(Row)
     Vue.use(Button)
+    Vue.use(Col)
+    Vue.use(Tooltip)
+    Vue.use(Tabs)
+    Vue.use(TabPane)
+    Vue.use(InputNumber)
+    Vue.use(link)
   }
 }
 export default element

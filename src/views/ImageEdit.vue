@@ -23,15 +23,17 @@
           <div class="clip-toolbar toolbar">
             <span>
               宽度
-              <el-input size="mini" type="number" class="clip-input" v-model="clipW" />
+              <el-input size="mini" type="number" class="clip-input" v-model='clipW' />
             </span>
             <span>
               高度
-              <el-input size="mini" type="number" class="clip-input" v-model="clipH" />
+              <el-input size="mini" type="number" class="clip-input" v-model='clipH' />
             </span>
             <div class="textbut">
-              <el-button type="text">确认</el-button>
-              <el-button type="text">取消</el-button>
+              <el-button type="text" size="medium" @click="initCropper()" :disabled="croppShow">裁剪</el-button>
+              <el-button type="text" size="medium" @click="sureCropper()" v-show='cropper'>确认</el-button>
+              <el-button type="text" size="medium" @click="cancelCropper()" v-show='cropper'>取消
+              </el-button>
             </div>
 
           </div>
@@ -46,21 +48,8 @@
         </div>
       </el-aside>
       <el-main>
-        <div class="panel" :style="editSty">
-          <canvas :width="canvasW" :height="canvasH" ref="canvas"></canvas>
-          <div class="mask" :style="editSty" @drop.prevent="drop" @click="maskClick">
-            <div class="drop-notice" v-show="!canPaint">
-              <i class="icon icon-drop"></i>
-              <p>拖放图片到此</p>
-            </div>
-            <textarea :class="textCla" class="textarea" :style="textSty" :readonly="!textContenteditable"
-              @mousedown="textMouseDown" @dblclick="textDouble" @input="textInput" draggable="false" ref="text"
-              v-model="textText"></textarea>
-            <Box :show="showClip" :width="clipW" :height="clipH" :left="clipL" :top="clipT" :borderW="clipBorderW"
-              :canvasW="canvasW" :canvasH="canvasH" :canDrag="clipCanDrag" :canvas="$refs.canvas" @change="boxChange">
-              <div :style="clipSty"></div>
-            </Box>
-          </div>
+        <div class="panel" v-if='data.src'>
+          <canvas :id="data.src" ref='canvas'></canvas>
         </div>
       </el-main>
     </el-container>
@@ -69,156 +58,84 @@
 
 <script>
 
-  import {
-    getElemOffset,
-    getPointerToElem,
-    copy
-  } from '../libs/utils.js'
-  import Ctx from '../libs/Ctx.js'
-  import TimeMachine from '../libs/TimeMachine.js'
+  import Cropper from 'cropperjs'
+  import 'cropperjs/dist/cropper.min.css'
 
-  import List from '../components/select.vue'
-  import Box from '../components/box.vue'
-  import {
-    Chrome
-  }
-    from 'vue-color'
-
-  import demoImg from '../assets/img.png'
-  import fmList from '../configs/fm-list.json'
-  import figureList from '../configs/figure-list.json'
-  import clipList from '../configs/clip-list.json'
-  import mosaicList from '../configs/mosaic-list.json'
-  import filterList from '../configs/filter-list.json'
-
-  let DATA = {
-    timeMachine: null,
-    ctx: null,
-    mosaicCtx: null,
-    beforeBlur: null,
-    beforeFilter: null
-  }
 
   export default {
-
     name: 'ImageEditor',
-    props: ['minWidth', 'maxWidth'],
-    components: {
-      'color-picker': Chrome,
-      Box,
-      List
-    },
-
-    data() {
-      return {
-        // init main style 
-        toolWrapperMargin: 10,
-        toolBarH: 40,
-        enhanceBarH: 30,
-        toolBarMargin: 10,
-        minCanvasW: this.minWidth,
-        minCanvasH: 500,
-        canvasW: this.minWidth,
-        canvasH: 500,
-        maskOpacity: 0.5,
-        maxCanvasW: this.maxWidth,
-
-        // text style
-        textL: 10,
-        textT: 10,
-        textW: 0,
-        textFz: 28,
-        textBorder: 2,
-        textColors: {
-          hex: "#ffffff"
-        },
-        shadowColors: {
-          hex: '#000000'
-        },
-        textAlpha: 1,
-        shadowBlur: 0,
-        shadowX: 0,
-        shadowY: 0,
-
-        // clip style
-        clipBorderW: 1,
-        clipW: 200,
-        clipH: 200,
-        clipL: 10,
-        clipT: 10,
-
-        // mosaic style 
-        mosaicBorderW: 1,
-        mosaicW: 200,
-        mosaicH: 200,
-        mosaicL: 10,
-        mosaicT: 10,
-
-        // figure style 
-        figureBorderW: 1,
-        figureW: 200,
-        figureH: 200,
-        figureL: 10,
-        figureT: 10,
-        figureAlpha: 0.5,
-        figureColors: {
-          hex: "#9E4949"
-        },
-
-        // action state
-        canPaint: false,
-        showText: false,
-        showClip: false,
-        showBlur: false,
-        showMosaic: false,
-        showFigure: false,
-        showFilter: false,
-
-        //text state
-        textContenteditable: false,
-        textCanDrag: false,
-        textTextGroup: [],
-        textText: '双击编辑',
-        textMinW: 130,
-        textToPointer: null,
-        textShowColorPicker: false,
-        textShowShadowColorPicker: false,
-        textFmList: fmList,
-        textFmNow: 0,
-        textLine: 1,
-
-        // clip state
-        clipCanDrag: false,
-        clipList: clipList,
-        clipNow: 0,
-
-        // blur state
-        blur: 0,
-        blurRangeW: 100,
-        blurMax: 10,
-
-        // mosaic state
-        mosaicCanDrag: false,
-        mosaicList: mosaicList,
-        mosaicNow: 0,
-
-        // figure state
-        figureCanDrag: false,
-        figureShowShadowColorPicker: false,
-        figureList: figureList,
-        figureNow: 0,
-
-        // filter state
-        filterList: filterList,
-        filterNow: 0,
-
-        // data url
-        url: null,
-        mosaicUrl: null,
+    props: {
+      data: {
+        type: Object,
+        required: true,
+        default: () => { }
       }
     },
+    data() {
+      return {
+        cropper: null,
+        croppShow: false,
+        clipW: '',
+        clipH: ''
 
+      }
+    },
+    mounted() {
+      this.drawImg()
+    },
+    computed: {
+
+    },
+    methods: {
+      // 在canvas上绘制图片
+      drawImg(href) {
+        this.$nextTick(() => {
+          let canvas = document.getElementById(this.data.src)
+          if (canvas) {
+            canvas.width = 1000
+            canvas.height = 700
+            let ctx = canvas.getContext('2d')
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            let img = new Image()
+            img.crossOrigin = 'Anonymous'
+            img.src = href || this.data.src
+            img.onload = function () {
+              ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+            }
+          }
+        })
+      },
+      // 显示裁剪框
+      initCropper() {
+        this.drawImg()
+        this.croppShow = true
+        let cropper = new Cropper(this.$refs.canvas, {
+          checkCrossOrigin: true,
+          viewMode: 2,
+          aspectRatio: 3 / 2,
+          autoCropArea: 1
+        })
+        this.cropper = cropper
+      },
+      // 确认裁剪
+      sureCropper() {
+        let _this = this
+        this.cropper.getCroppedCanvas().toBlob(function (blob) {
+          const href = window.URL.createObjectURL(blob)
+          _this.drawImg(href)
+        }, 'image/jpeg')
+        this.cancelCropper()
+
+      },
+      // 销毁裁剪框
+      cancelCropper() {
+        this.cropper.destroy()
+        this.croppShow = false
+        this.cropper = null
+      }
+    }
   }
+
 </script>
 <style scoped lang='css'>
   /deep/.el-input input::-webkit-outer-spin-button,
@@ -255,13 +172,10 @@
   }
 
   .el-main {
-    background-color: #E9EEF3;
-    color: #333;
+
     text-align: center;
-    line-height: 700px;
     height: 858px;
     overflow-y: hidden;
-    position: relative;
   }
 
   body>.el-container {
@@ -290,6 +204,13 @@
     background: #f88753;
     border-color: #f88753;
     color: white;
+
+  }
+
+  .el-tooltip .el-button {
+
+    display: block;
+    z-index: 10000;
   }
 
   .rotate-wrapper {
@@ -343,133 +264,17 @@
   }
 
   .panel {
-    margin-left: auto;
-    margin-right: auto;
+    height: 700px;
     position: relative;
+    float: left;
   }
 
-  .panel * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  canvas {
+    /* width: 100%; */
   }
 
-  .panel canvas,
-  .panel .mask,
-  .panel .loading {
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 2px;
-  }
-
-  .panel .loading {
-    z-index: 300;
-    top: 0;
-    left: 0;
-    font-size: 30px;
+  .el-main img {
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-  }
-
-  .panel .mask {
-    z-index: 50;
-    /*
-      .loading {
-        z-index: 50;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-        background: rgba(0, 0, 0, .5);
-        color: #ada4a4;
-        .loading-icon {
-          font-size: 60px;
-        }
-      }*/
-  }
-
-  .panel .mask .drop-notice {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 30px;
-    text-align: center;
-    transform: translateX(-50%) translateY(-50%);
-    color: #ada4a4;
-  }
-
-  .panel .mask .drop-notice .icon-drop::before {
-    font-size: 60px;
-  }
-
-  .panel .mask .textarea {
-    position: absolute;
-    overflow: hidden;
-    background: transparent;
-    border-radius: 2px;
-    border: 2px dashed #fff;
-    resize: none;
-    outline: none;
-    user-select: none;
-    line-height: 100%;
-  }
-
-  .panel .mask .textarea.disabled {
-    text-align: center;
-    cursor: pointer;
-    cursor: -webkit-grab;
-  }
-
-  .panel .mask .textarea.abled {
-    text-align: left;
-    cursor: text;
-  }
-
-  .panel .mask .box {
-    position: absolute;
-    cursor: pointer;
-    cursor: -webkit-grab;
-    border-style: dashed;
-    border-color: #fff;
-    border-radius: 2px;
-  }
-
-  .panel .mask .box .point {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    border-radius: 100%;
-    background: #20a0ff;
-    cursor: move;
-    z-index: 200;
-  }
-
-  #image-editor .panel .mask .box .point:first-of-type {
-    left: 0;
-    top: 0;
-    transform: translateX(-50%) translateY(-50%);
-    cursor: move;
-  }
-
-  #image-editor .panel .mask .box .point:nth-of-type(2) {
-    right: 0;
-    top: 0;
-    transform: translateX(50%) translateY(-50%);
-  }
-
-  #image-editor .panel .mask .box .point:nth-of-type(3) {
-    bottom: 0;
-    left: 0;
-    transform: translateX(-50%) translateY(50%);
-  }
-
-  #image-editor .panel .mask .box .point:nth-of-type(4) {
-    right: 0;
-    bottom: 0;
-    transform: translateX(50%) translateY(50%);
   }
 </style>

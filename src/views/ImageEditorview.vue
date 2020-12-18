@@ -1,16 +1,20 @@
 <template>
   <div>
-    <!-- <ImageEditor :minWidth="800" :maxWidth="1000"></ImageEditor> -->
-    <ImageEdit></ImageEdit>
+    <ImageEdit :data='slide'></ImageEdit>
   </div>
 </template>
 <script>
   import ImageEdit from './ImageEdit.vue'
-  import ImageEditor from './image-editor.vue'
   export default {
     name: 'ImageEditorview',
+    data() {
+      return {
+        slide: {
+          src: 'https://avatars0.githubusercontent.com/u/26196557?s=460&v=40' // 图片地址
+        },
+      }
+    },
     components: {
-      // 'ImageEditor': ImageEditor
       'ImageEdit': ImageEdit
     }
   }
