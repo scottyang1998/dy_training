@@ -1,4 +1,4 @@
-import { Checkbox, Input, Radio, Select, Option, Icon, Menu, MenuItem, MenuItemGroup, Submenu, Container, Header, Main, Aside, Row, Button, Col, Tooltip, Tabs, TabPane, InputNumber, link} from 'element-ui'
+import { Checkbox, Input, Radio, Select, Option, Icon, Menu, MenuItem, MenuItemGroup, Submenu, Container, Header, Main, Aside, Row, Button, Col, Tooltip, Tabs, TabPane, InputNumber, link, MessageBox, Message } from 'element-ui'
 const element = {
   install: function (Vue) {
     Vue.use(Select)
@@ -23,6 +23,8 @@ const element = {
     Vue.use(TabPane)
     Vue.use(InputNumber)
     Vue.use(link)
+    Vue.prototype.$confirm = MessageBox.confirm
+
   }
 }
 export default element

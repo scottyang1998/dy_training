@@ -2,7 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import element from './plugins/element'
+import VueCropper from 'vue-cropper' 
 
+Vue.use(VueCropper)
 Vue.use(element)
 Vue.config.productionTip = false
 
