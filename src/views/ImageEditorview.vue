@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ImageEdit :data='slide'></ImageEdit>
+    <ImageEdit></ImageEdit>
   </div>
 </template>
 <script>
@@ -9,9 +9,9 @@
     name: 'ImageEditorview',
     data() {
       return {
-        slide: {
-          src: 'https://avatars0.githubusercontent.com/u/26196557?s=460&v=40' // 图片地址
-        },
+        // slide: {
+        //   src: 'https://avatars0.githubusercontent.com/u/26196557?s=460&v=40' // 图片地址
+        // },
       }
     },
     components: {
