@@ -1060,8 +1060,7 @@
                           <a target="_blank" href="//jz.duoyi.com">官方网站</a>
                           <a target="_blank" href="//jz.duoyi.com/a/"
                             onclick="dy_trace(['_trackEvent', 'client', 'download', '多益首页_产品列表_《九州劫》安卓版下载']);">安卓版下载</a>
-                          <a target="_blank" href="//jz.duoyi.com/i/"
-                            onclick="dy_trace(['_trackEvent', 'client', 'download', '多益首页_产品列表_《九州劫》iOS下载']);">iOS版下载</a>
+                          <a target="_blank" href="//jz.duoyi.com/i/">iOS版下载</a>
                         </div>
                       </div>
                     </div>
@@ -1077,7 +1076,7 @@
                   </div>
                 </li>
                 <li>
-                  <a href="//dwsy.duoyi.com" target="_blank">
+                  <a>
                     <div class="slogo">
                       <img src="//image.duoyi.com/Resource/www/img/logo/dwsy_s.png?v=20200110" class="" alt="梦想帝王手游">
                     </div>
@@ -1097,8 +1096,7 @@
                           <a target="_blank" href="//dwsy.duoyi.com">官方网站</a>
                           <a target="_blank" href="//dwsy.duoyi.com/a/"
                             onclick="dy_trace(['_trackEvent', 'client', 'download', '多益首页_产品列表_《梦想帝王手游》安卓版下载']);">安卓版下载</a>
-                          <a href="//dwsy.duoyi.com/i" target="_blank"
-                            onclick="dy_trace(['_trackEvent', 'client', 'download', '多益首页_产品列表_《梦想帝王手游》iOS版下载']);">iOS版下载</a>
+                          <a href="//dwsy.duoyi.com/i">iOS版下载</a>
                         </div>
                       </div>
                     </div>
@@ -1320,7 +1318,7 @@
                       <img src="//image.duoyi.com/Resource/www/img/logo/2980_s.jpg" class="" alt="2980邮箱">
                     </div>2980邮箱
                   </a>
-                  <div class="pop">
+                  <div class="pop" style="left: auto; right: 140px; display: none;">
                     <div class="blogo">
                       <img src="//image.duoyi.com/Resource/www/img/logo/2980.jpg" class="" alt="2980邮箱">
                     </div>
@@ -1345,6 +1343,7 @@
                     </div>
                   </div>
                 </li>
+
               </ul>
             </div>
           </div>
@@ -1459,15 +1458,20 @@
     clearInterval(timer);
     console.log(e);
     if (e && e.stopPropagation) {
-      e.stopPropagation();
+      e.stopImmediatePropagation();
     } else {
       window.event.cancelBubble = true;
     }
   };
-  box.onmouseleave = function () {
+  box.onmouseleave = function (e) {
+    if (e && e.stopPropagation) {
+      e.stopImmediatePropagation();
+    } else {
+      window.event.cancelBubble = true;
+    }
     timer = setInterval(function () {
       rtBtn.onclick();
-    }, 2000);
+    }, 1000);
   };
 
 
@@ -1522,19 +1526,96 @@
   }
 
   //6.自动播放
-  var timer1 = setInterval(function () {
+  var timer1 = setInterval(function (e) {
+    if (e && e.stopPropagation) {
+      e.stopImmediatePropagation();
+    } else {
+      window.event.cancelBubble = true;
+    }
     btn1.onclick();
   }, 3500);
 
   //7.鼠标移入 定时器停止 否则启动
-  box1.onmouseenter = function () {
+  box1.onmouseenter = function (e) {
+    if (e && e.stopPropagation) {
+      e.stopImmediatePropagation();
+    } else {
+      window.event.cancelBubble = true;
+    }
     clearInterval(timer1);
   };
-  box1.onmouseleave = function () {
+  box1.onmouseleave = function (e) {
+    if (e && e.stopPropagation) {
+      e.stopImmediatePropagation();
+    } else {
+      window.event.cancelBubble = true;
+    }
     timer1 = setInterval(function () {
       btn1.onclick();
-    }, 3000);
+    }, 1000);
   };
+
+  //.pop加上display:block
+  // var lilist = document.querySelectorAll(".gameModCon li")
+  // var len = document.querySelectorAll(".gameModCon li").length
+
+  var lilist = document.querySelectorAll(".gameModCon li")
+  var lilen = document.querySelectorAll(".gameModCon li").length
+
+  var popindex = 0
+  var hideindex
+  for (let a = 0; a < lilen; a++) {
+    lilist[a].setAttribute("index", a)
+    lilist[a].onmouseenter = function () {
+      popindex = this.getAttribute("index")
+      pop(popindex)
+    }
+    lilist[a].onmouseleave = function () {
+      hideindex = this.getAttribute("index")
+      hide(hideindex)
+    }
+  }
+
+  function pop(num) {
+    for (var b = 0; b < lilen; b++) {
+      lilist[b].lastElementChild.style.display = "none"
+      // .lastChild.style.display = "none"
+    }
+
+    var changeH, temp
+    console.log(num);
+    lilist[num].lastElementChild.style.display = "block"
+    if (num >= 8 && num < 19) {
+      console.log(num);
+      temp = num
+      changeH = (num - 8) * 45 + "px"
+      lilist[num].lastElementChild.style.marginLeft = "-120px"
+      lilist[num].lastElementChild.style.marginTop = changeH
+    }
+    else if (num <= 7) {
+      changeH = num * 50 + "px"
+      lilist[num].lastElementChild.style.marginTop = changeH
+      lilist[num].lastElementChild.style.marginLeft = "200px"
+    } else {
+      temp = num
+      changeH = (num - 18) * 45 + "px"
+      lilist[num].lastElementChild.style.marginLeft = "-100px"
+      lilist[num].lastElementChild.style.marginTop = changeH
+    }
+
+
+  }
+
+  function hide(num) {
+    for (var c = 0; c < lilen; c++) {
+      lilist[c].lastElementChild.style.display = "none"
+      // .lastChild.style.display = "none"
+    }
+    lilist[num].lastElementChild.style.display = "none"
+    // console.log(lilist[num].childNodes);
+  }
+
+
 </script>
 
 
