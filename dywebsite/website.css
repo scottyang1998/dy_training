@@ -569,3 +569,230 @@ dl {
 .con {
   *zoom: 1;
 }
+
+.gameList {
+  background: #fff;
+  padding: 20px 0 120px;
+  position: relative;
+  z-index: 2;
+}
+
+.gameListCon {
+  box-shadow: 0 0 8px rgba(7, 0, 2, 0.1);
+  margin-top: 12px;
+  padding-bottom: 20px;
+  position: relative;
+  border: 1px solid #f1f1f1;
+}
+
+.gameModCon {
+  border-right: 1px solid #f5f5f5;
+  height: 517px;
+}
+
+.pop {
+  display: none;
+  width: 485px;
+  padding: 15px 0 0 15px;
+  position: absolute;
+  left: 66px;
+  top: 44px;
+  background: #fff;
+  z-index: 100;
+  box-shadow: 0 0 8px rgba(7, 0, 2, 0.1);
+  border: 1px solid #f4f4f4;
+  display: none;
+  zoom: 1;
+}
+
+.pop:hover {
+  display: block;
+}
+
+.gameMod {
+  float: left;
+  width: 334px;
+  margin-left: -1px;
+}
+
+.last {
+  width: 333px;
+}
+
+.gameModCon ul {
+  margin-top: 18px;
+}
+
+.gameModCon li {
+  line-height: 47px;
+  height: 47px;
+  margin-left: 89px;
+  font-size: 14px;
+  color: #000;
+}
+
+.gameModCon li .slogo {
+  float: left;
+  display: inline-block;
+  width: 41px;
+  height: 41px;
+  border: 1px solid #f1f1f1;
+  margin-right: 23px;
+  margin-top: 2px;
+}
+
+.gameMod h3 {
+  border-right: 2px solid #fff;
+  background: #f1f1f1;
+  text-align: center;
+  line-height: 34px;
+  height: 34px;
+  font-size: 16px;
+  color: #de0012;
+}
+
+.gameMod h3 a {
+  color: #272a2c;
+}
+
+.gameModCon li span {
+  _padding: 11px 0;
+  display: inline;
+}
+
+.gameModCon li .hot,
+.gameModCon li .ce,
+.gameModCon li .yu,
+.gameModCon li .new {
+  vertical-align: middle;
+  margin-left: 4px;
+  display: inline;
+}
+
+.pop .blogo {
+  width: 66px;
+  height: 66px;
+  border: 1px solid #f1f1f1;
+  float: left;
+}
+
+.popC {
+  float: left;
+  width: 396px;
+  padding-left: 10px;
+}
+
+.popT {
+  line-height: 66px;
+  height: 66px;
+  border-bottom: 1px solid #f1f1f1;
+  overflow: hidden;
+}
+
+.popT h4 {
+  float: left;
+  font-size: 18px;
+  line-height: 30px;
+  padding-top: 14px;
+}
+
+.popT h4 span {
+  display: block;
+  font-size: 12px;
+  color: #979797;
+  font-weight: 100;
+  line-height: 16px;
+}
+
+.popT .linkArea {
+  float: right;
+  /* margin-top: 18px; */
+}
+
+.popT .linkArea a {
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 0 0 5px;
+  color: #d32834;
+  line-height: 28px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 20px;
+  border: 1px solid #d32834;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.popC p {
+  line-height: 22px;
+  text-indent: 2em;
+  color: #171717;
+  font-size: 14px;
+  padding: 20px 0;
+}
+
+.zhushi {
+  color: #5a5a5a;
+  text-align: center;
+  padding-top: 5px;
+}
+
+.zhushi span {
+  margin: 0 6px;
+}
+
+.zhushi img {
+  margin-right: 5px;
+  margin-top: -2px;
+  vertical-align: middle;
+}
+
+.foot {
+  text-align: center;
+  color: #fff;
+  background: #262a2d;
+  font-family: "\5B8B\4F53";
+  font-size: 12px;
+  overflow: hidden;
+  padding-bottom: 27px;
+  /* position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -500px;
+  width: 100%; */
+}
+
+.foot ul {
+  margin-bottom: 20px;
+  padding-top: 25px;
+}
+
+.foot .nb {
+  border: none;
+}
+
+.foot li {
+  display: inline;
+  border-left: 1px solid #fff;
+  padding: 0 8px;
+}
+
+.foot p {
+  margin: 10px auto 0;
+}
+
+.foot a {
+  color: #fff;
+}
+
+.foot p {
+  margin: 10px auto 0;
+}
+
+.foot img {
+  vertical-align: middle;
+}
+
+.foot .fd a {
+  margin-left: 10px;
+}
