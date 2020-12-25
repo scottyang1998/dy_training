@@ -18,11 +18,11 @@
           <ul>
             <li><a href="">首页</a><span></span></li>
             <li><a href="">客服中心</a><span></span></li>
-            <li><a href="">人才招聘</a><span></span>
-              <!-- <div class="subnav">
+            <li class="rencai"><a href="">人才招聘</a><span></span>
+              <div class="subNav">
                 <a href="">社会招聘</a>
                 <a href="">校园招聘</a>
-              </div> -->
+              </div>
             </li>
             <li><a href="">商务合作</a><span></span></li>
             <li><a href="">关于多益</a><span></span></li>
@@ -1418,13 +1418,14 @@
     change(curIndex);
     return false;
   }
-  ltBtn.onclick = function () {
+  ltBtn.onclick = function (e) {
     curIndex--;
     if (curIndex <= -1) {
       curIndex = len - 1;
     }
     change(curIndex);
-    return false;
+    e.preventDefault()
+
   }
 
   //4.分页下标点击切换图片事件
@@ -1451,27 +1452,23 @@
   //6.自动播放
   var timer = setInterval(function () {
     rtBtn.onclick();
-  }, 4000);
+    console.log(111);
+  }, 3000);
 
   // 7.鼠标移入 定时器停止 否则启动
   box.onmouseenter = function (e) {
-    clearInterval(timer);
-    console.log(e);
-    if (e && e.stopPropagation) {
-      e.stopImmediatePropagation();
-    } else {
-      window.event.cancelBubble = true;
+    console.log(e.clientX);
+    console.log(e.clientY);
+    // clearInterval(timer);
+    if ((e.clientX < 925 || e.clientX > 1480 || e.clientY < 388)) {
+      clearInterval(timer);
+      console.log("123");
     }
   };
   box.onmouseleave = function (e) {
-    if (e && e.stopPropagation) {
-      e.stopImmediatePropagation();
-    } else {
-      window.event.cancelBubble = true;
-    }
     timer = setInterval(function () {
       rtBtn.onclick();
-    }, 1000);
+    }, 3000);
   };
 
 
@@ -1527,29 +1524,20 @@
 
   //6.自动播放
   var timer1 = setInterval(function (e) {
-    if (e && e.stopPropagation) {
-      e.stopImmediatePropagation();
-    } else {
-      window.event.cancelBubble = true;
-    }
     btn1.onclick();
-  }, 3500);
+  }, 2560);
 
   //7.鼠标移入 定时器停止 否则启动
   box1.onmouseenter = function (e) {
-    if (e && e.stopPropagation) {
-      e.stopImmediatePropagation();
-    } else {
-      window.event.cancelBubble = true;
-    }
+    // e.stopPropagation
+    // console.log(e.clientX);
+    // console.log(e.clientY);
     clearInterval(timer1);
+    // if ((clientX > 925 && clientX < 1480) && (clientY > 388 && clientY < 598)) {
+    //   clearInterval(timer);
+    // }
   };
   box1.onmouseleave = function (e) {
-    if (e && e.stopPropagation) {
-      e.stopImmediatePropagation();
-    } else {
-      window.event.cancelBubble = true;
-    }
     timer1 = setInterval(function () {
       btn1.onclick();
     }, 1000);
@@ -1587,7 +1575,6 @@
     lilist[num].lastElementChild.style.display = "block"
     if (num >= 8 && num < 19) {
       console.log(num);
-      temp = num
       changeH = (num - 8) * 45 + "px"
       lilist[num].lastElementChild.style.marginLeft = "-120px"
       lilist[num].lastElementChild.style.marginTop = changeH
@@ -1597,13 +1584,10 @@
       lilist[num].lastElementChild.style.marginTop = changeH
       lilist[num].lastElementChild.style.marginLeft = "200px"
     } else {
-      temp = num
-      changeH = (num - 18) * 45 + "px"
-      lilist[num].lastElementChild.style.marginLeft = "-100px"
+      changeH = (num - 18) * 40 + "px"
+      lilist[num].lastElementChild.style.marginLeft = "-150px"
       lilist[num].lastElementChild.style.marginTop = changeH
     }
-
-
   }
 
   function hide(num) {
@@ -1614,6 +1598,15 @@
     lilist[num].lastElementChild.style.display = "none"
     // console.log(lilist[num].childNodes);
   }
+
+
+  // //人才招聘下拉
+  // var rc = document.getElementsByClassName("rencai")[0]
+  // var sub = rc.lastElementChild
+  // console.log(sub.nodeName);
+  // rc.onmouseenter = function () {
+  //   sub.style.display = "block"
+  // }
 
 
 </script>
