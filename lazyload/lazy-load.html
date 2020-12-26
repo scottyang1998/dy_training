@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>图片懒加载</title>
+  <style>
+    .container {
+      width: 100%;
+    }
+
+    .img-area {
+      height: 600px;
+      text-align: center
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="img-area">
+      <img class="my-photo" alt="loading" data-src="./imgs/轮播图1.jpg">
+    </div>
+    <div class="img-area">
+      <img class="my-photo" alt="loading" data-src="./imgs/轮播图2.jpg">
+    </div>
+    <div class="img-area">
+      <img class="my-photo" alt="loading" data-src="./imgs/轮播图3.jpg">
+    </div>
+    <div class="img-area">
+      <img class="my-photo" alt="loading" data-src="./imgs/轮播图4.jpg">
+    </div>
+    <div class="img-area">
+      <img class="my-photo" alt="loading" data-src="./imgs/轮播图5.jpg">
+    </div>
+    <div class="img-area">
+      <img class="my-photo" alt="loading" data-src="./imgs/轮播图6.jpg">
+    </div>
+    <div class="img-area">
+      <img class="my-photo" alt="loading" data-src="./imgs/轮播图7.jpg">
+    </div>
+    <div class="img-area">
+      <img class="my-photo" alt="loading" data-src="./imgs/轮播图8.jpg">
+    </div>
+  </div>
+</body>
+<script>
+
+  function isInSight(el) {
+    const bound = el.getBoundingClientRect();
+    const clientHeight = window.innerHeight;
+    //如果只考虑向下滚动加载
+    //const clientWidth=window.innerWeight;
+    return bound.top <= clientHeight + 100;
+  }
+
+  let index = 0;
+  function checkImgs() {
+    const imgs = document.querySelectorAll('.my-photo');
+    for (let i = index; i < imgs.length; i++) {
+      if (isInSight(imgs[i])) {
+        loadImg(imgs[i]);
+        index = i;
+      }
+    }
+    // Array.from(imgs).forEach(el => {
+    //   if (isInSight(el)) {
+    //     loadImg(el);
+    //   }
+    // })
+  }
+
+  function loadImg(el) {
+    if (!el.src) {
+      const source = el.dataset.src;
+      el.src = source;
+    }
+  }
+
+
+  function throttle(func, wait = 500) {
+    let previous = 0;
+    return function () {
+      let now = Date.now();
+      let context = this;
+      console.log(context);
+      let args = arguments;
+      if (now - previous > wait) {
+        func.apply(context, args);
+        // console.log(context);
+        previous = now;
+      }
+    }
+  }
+
+
+  window.onload = checkImgs;
+  window.onscroll = throttle(checkImgs);
+</script>
+
+</html>

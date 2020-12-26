@@ -1,53 +1,27 @@
 <template>
-  <div class="website">
-    <div class="s1">
-      <h1 class="hide">多益网络官网</h1>
-      <div class="head">
-        <div class="bd">
-          <div class="logo"></div>
-          <div class="nav"></div>
-        </div>
-      </div>
-      <div class="focus"></div>
-      <div class="recommend"></div>
-      <div class="gamelist"></div>
-    </div>
-    <div class="foot">
-
-    </div>
+  <div>
+    <img v-lazy="item" v-for="item in imgs" alt="">
   </div>
 </template>
 
+<script>
+  export default {
+    data() {
+      return {
+        imgs: [
+          "http://pic.pptbz.com/201506/2015070581208537.JPG",
+          "http://pic.58pic.com/58pic/15/63/07/42Q58PIC42U_1024.jpg",
+          "http://pic.58pic.com/58pic/14/62/50/62558PICxm8_1024.jpg",
+          "http://txt25-2.book118.com/2017/0420/book99787/99786555.jpg",
+          "http://5b0988e595225.cdn.sohucs.com/images/20170906/58cdb24be3624488ad3e8d3d00b4585f.jpeg"
+        ]
+      }
+    }
+  }
+</script>
+
 <style scoped>
-  body,
-  div,
-  ul,
-  ol,
-  dl,
-  dd,
-  dt,
-  li,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
-    margin: 0;
-    padding: 0;
-  }
-
-  .hide {
-    display: none;
-  }
-
-  .head {
-    height: 65px;
-    background-color: #262a2d;
-  }
-
-  .head .bd {
-    width: 1000px;
+  img {
+    display: block;
   }
 </style>
