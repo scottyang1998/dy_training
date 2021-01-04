@@ -539,30 +539,6 @@ dl {
   width: 100%;
 }
 
-.light {
-  cursor: pointer;
-  position: absolute;
-  left: -510px;
-  top: 0;
-  width: 305px;
-  height: 436px;
-  background-image: -moz-linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0.5),
-    rgba(255, 255, 255, 0)
-  );
-  background-image: -webkit-linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0.5),
-    rgba(255, 255, 255, 0)
-  );
-  transform: skewx(-25deg);
-  -o-transform: skewx(-25deg);
-  -moz-transform: skewx(-25deg);
-  -webkit-transform: skewx(-25deg);
-}
 .clfix,
 .box,
 .con {
@@ -757,20 +733,11 @@ dl {
   font-size: 12px;
   overflow: hidden;
   padding-bottom: 27px;
-  /* position: absolute;
-  bottom: 0;
-  left: 50%;
-  margin-left: -500px;
-  width: 100%; */
 }
 
 .foot ul {
   margin-bottom: 20px;
   padding-top: 25px;
-}
-
-.foot .nb {
-  border: none;
 }
 
 .foot li {
@@ -848,124 +815,6 @@ dl {
 
 /* ////// */
 /*  */
-/*  */
-
-.recommend {
-  background: #f1f1f1;
-  padding-top: 18px;
-  overflow: hidden;
-  clear: both;
-}
-.recommendCon {
-  margin-top: 12px;
-  margin-left: -8px;
-}
-.mtit {
-  font-size: 22px;
-  color: #282a29;
-  font-weight: 100;
-  line-height: 30px;
-  position: relative;
-}
-.mtit span {
-  display: block;
-  width: 4px;
-  height: 20px;
-  overflow: hidden;
-  background: #e62232;
-  float: left;
-  margin-top: 5px;
-  margin-right: 8px;
-}
-.recommend ul {
-  overflow: hidden;
-  padding-left: 8px;
-  margin-right: -42px;
-  *padding-bottom: 35px;
-}
-.recommend li {
-  float: left;
-  display: inline;
-  width: 305px;
-  height: 280px;
-  overflow: hidden;
-  margin-right: 42px;
-  position: relative;
-  box-shadow: 0 0 8px rgba(7, 0, 2, 0.27);
-  margin-bottom: 35px;
-}
-.recommend li img {
-  display: block;
-  vertical-align: top;
-}
-.recommend li.last {
-  margin-right: 0;
-}
-.proInfo {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  bottom: 0;
-  color: #fff;
-  height: 104px;
-  z-index: 3;
-}
-.proInfoCon {
-  padding: 5px 23px 0;
-}
-.proInfo dt {
-  overflow: hidden;
-  margin-bottom: 4px;
-}
-.proInfo dt a {
-  line-height: 26px;
-  font-size: 17px;
-  color: #fff;
-  font-weight: 700;
-  float: left;
-}
-.proInfo dd {
-  padding-left: 7px;
-  line-height: 20px;
-  white-space: nowrap;
-}
-.proInfo dd a,
-.proInfo dd p {
-  line-height: 20px;
-  font-size: 14px;
-  color: #fff;
-  margin-right: 12px;
-  display: inline-block;
-  width: 123px;
-  white-space: nowrap;
-}
-.proInfo dd a:hover {
-  color: #fff;
-}
-.proInfo .sfd {
-  text-align: center;
-  line-height: 20px;
-}
-.proInfo .sfd a {
-  color: #fff;
-  margin: 0 13px;
-  text-decoration: underline;
-  font-size: 12px;
-  line-height: 28px;
-}
-.proInfoBg {
-  height: 104px;
-  background: rgb(213, 0, 15);
-  left: 0;
-  width: 100%;
-  bottom: 0;
-  position: absolute;
-  z-index: 2;
-  filter: alpha(opacity=80);
-  -moz-opacity: 0.8;
-  -khtml-opacity: 0.8;
-  opacity: 0.8;
-}
 
 .light {
   cursor: pointer;
@@ -998,29 +847,6 @@ dl {
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
-/*.recPic img{-webkit-transform-origin: 100% center; -moz-transform-origin: 100% center; -ms-transform-origin: 100% center; -o-transform-origin: 100% center; transform-origin: 100% center; -webkit-transition: all .8s ease-in 0s; -moz-transition: all .8s ease-in 0s; -ms-transition: all .8s ease-in 0s; -o-transition: all .8s ease-in 0s; transition: all .8s ease-in 0s;}
-.recPic:hover img{-webkit-transform: scale(1.02);-moz-transform: scale(1.02);-ms-transform: scale(1.02);-o-transform: scale(1.02);transform: scale(1.02)}*/
-
-.star3,
-.star4,
-.star5 {
-  float: left;
-  display: inline-block;
-  overflow: hidden;
-  height: 18px;
-  width: 96px;
-  background: url("../img/startj.png") repeat-x;
-  margin: 5px 0 0 7px;
-}
-.star3 {
-  width: 56px;
-}
-.star4 {
-  width: 76px;
-}
-.star5 {
-  width: 96px;
-}
 
 .ceshi {
   width: 39px;
@@ -1031,84 +857,6 @@ dl {
   right: 0px;
 }
 
-/** äº§å“åˆ—è¡¨ **/
-.gameList {
-  background: #fff;
-  padding: 20px 0 120px;
-  position: relative;
-  z-index: 2;
-}
-.gameListCon {
-  box-shadow: 0 0 8px rgba(7, 0, 2, 0.1);
-  margin-top: 12px;
-  padding-bottom: 20px;
-  position: relative;
-  border: 1px solid #f1f1f1;
-}
-.gameMod {
-  float: left;
-  width: 334px;
-  margin-left: -1px;
-}
-.gameMod h3 {
-  border-right: 2px solid #fff;
-  background: #f1f1f1;
-  text-align: center;
-  line-height: 34px;
-  height: 34px;
-  font-size: 16px;
-  color: #de0012;
-}
-.gameMod h3 a {
-  color: #272a2c;
-}
-.gameMod h3 a:hover {
-  color: #de0012;
-}
-.gameMod.last {
-  width: 333px;
-}
-.gameMod.last h3 {
-  border-right: none;
-}
-.gameModCon {
-  border-right: 1px solid #f5f5f5;
-  height: 517px;
-}
-.gameMod.last .gameModCon {
-  border-right: none;
-}
-.gameModCon ul {
-  margin-top: 18px;
-}
-.gameModCon li {
-  line-height: 47px;
-  height: 47px;
-  margin-left: 89px;
-  font-size: 14px;
-  color: #000;
-}
-.gameModCon li .slogo {
-  float: left;
-  display: inline-block;
-  width: 41px;
-  height: 41px;
-  border: 1px solid #f1f1f1;
-  margin-right: 23px;
-  margin-top: 2px;
-}
-.gameModCon li span {
-  _padding: 11px 0;
-  display: inline;
-}
-.gameModCon li .hot,
-.gameModCon li .ce,
-.gameModCon li .yu,
-.gameModCon li .new {
-  vertical-align: middle;
-  margin-left: 4px;
-  display: inline;
-}
 .gameMore {
   display: block;
   margin: 18px 22px 0 0;
@@ -1126,110 +874,6 @@ dl {
   background: #b20f1d;
 }
 
-.pop {
-  width: 485px;
-  padding: 15px 0 0 15px;
-  position: absolute;
-  left: 66px;
-  top: 44px;
-  background: #fff;
-  z-index: 100;
-  box-shadow: 0 0 8px rgba(7, 0, 2, 0.1);
-  border: 1px solid #f4f4f4;
-  display: none;
-  zoom: 1;
-}
-.pop .blogo {
-  width: 66px;
-  height: 66px;
-  border: 1px solid #f1f1f1;
-  float: left;
-}
-.popC {
-  float: left;
-  width: 396px;
-  padding-left: 10px;
-}
-.popC p {
-  line-height: 22px;
-  text-indent: 2em;
-  color: #171717;
-  font-size: 14px;
-  padding: 20px 0;
-}
-.popT {
-  line-height: 66px;
-  height: 66px;
-  border-bottom: 1px solid #f1f1f1;
-  overflow: hidden;
-}
-.popT h4 {
-  float: left;
-  font-size: 18px;
-  line-height: 30px;
-  padding-top: 14px;
-}
-.popT h4 span {
-  display: block;
-  font-size: 12px;
-  color: #979797;
-  font-weight: 100;
-  line-height: 16px;
-}
-.popT .linkArea {
-  float: right;
-  margin-top: 18px;
-}
-.popT .linkArea a {
-  float: left;
-  display: inline-block;
-  margin: 0 0 0 5px;
-  color: #d32834;
-  line-height: 28px;
-  height: 28px;
-  padding: 0 10px;
-  border-radius: 20px;
-  border: 1px solid #d32834;
-  cursor: pointer;
-  font-size: 12px;
-}
-.popT .linkArea a:hover {
-  background: #d32834;
-  color: #fff;
-  text-decoration: none;
-}
-.popT #mar01 a {
-  margin-left: 1px;
-}
-.popB {
-  line-height: 22px;
-  color: #171717;
-  font-size: 14px;
-  padding: 25px 0;
-  clear: both;
-  overflow: hidden;
-}
-.popB p {
-  padding-top: 7px;
-  text-indent: 2em;
-  padding-right: 8px;
-  text-align: justify;
-}
-.popB span {
-  width: 75px;
-  font-size: 12px;
-  float: left;
-  margin-right: 10px;
-  display: block;
-  text-align: center;
-}
-.popB img {
-  width: 70px;
-}
-.popB p.long-text {
-  float: right;
-  width: 392px;
-}
 .zhushi {
   color: #5a5a5a;
   text-align: center;
