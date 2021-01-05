@@ -24,19 +24,7 @@
         states: arr
       }
     },
-    // computed: {
-    //   handledata: {
-    //     get() {
-    //       return this.value
-    //     },
-    //     set(newval) {
-    //       console.log("aaa", newval);
-    //       this.value = newval.map((val) => {
-    //         return val.split('-')[0]
-    //       })
-    //     }
-    //   }
-    // },
+
     mounted() {
       //console.log('xx1', this.states);
       this.list = this.states.map(item => {
@@ -55,23 +43,34 @@
       remoteMethod(query) {
         if (query !== '') {
           this.loading = true;
+
+          //正则实现模糊搜索
+          let m = query.match(/(\d*)/)[0];   //匹配query中的第一串数字
+          // console.log(typeof m);
+          // console.log("数字", m);
+          let n = query.match(/[\u4e00-\u9fa5]{1,}/);   //匹配query中的第一串汉字
+          // console.log("汉字", n);
+          if (m == null) m = ""
+          if (n == null) n = ""
+          let query1 = m + n  //重组query 如 123周
+          let query2 = n + m  //重组query 如 周123
+          // console.log("query1", query1);
+          // console.log("query2", query2);
+          let strReg1 = ['', ...query1, ''].join('.*'); //转化成正则格式的字符串
+          let strReg2 = ['', ...query2, ''].join('.*'); //转化成正则格式的字符串
+          let reg1 = new RegExp(strReg1)
+          let reg2 = new RegExp(strReg2)
+
           setTimeout(() => {
             this.loading = false;
-            console.log("pre", this.list);
+            // console.log("pre", this.list);
             this.options = this.list.filter(item => {
-              return (item.label + item.imnick).toLowerCase()
-                .indexOf(query.toLowerCase()) > -1;
-
-              // var reg1 = /(\d*)/   //匹配query中的第一串数字
-              // var reg2 = /[\u4e00-\u9fa5]{1,}/    //匹配query中的第一串汉字
-              // var m = query.match(reg1)[0];
-              // var n = query.match(reg2);
-              // return (new RegExp(n).test(item.imnick) && new RegExp(m).test(item.imcode))
-
+              // return (item.label + item.imnick).toLowerCase()
+              //   .indexOf(query.toLowerCase()) > -1;
+              return reg1.test(item.label + item.imnick) || reg2.test(item.label + item.imnick)  //返回符合的item
             });
-
           }, 200);
-          console.log("pro", this.list);
+          // console.log("pro", this.list);
         } else {
           this.options = [];
         }
